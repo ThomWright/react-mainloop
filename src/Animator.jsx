@@ -2,6 +2,7 @@ import React from 'react';
 import MainLoop from 'mainloop.js';
 
 const FPS = 60;
+const TIMESTEP = 1000 / FPS;
 const MAX_FPS = 60;
 
 /**
@@ -14,9 +15,7 @@ const MAX_FPS = 60;
  * @param  {function} update
  * @return {ReactComponent} An animated version of the given component.
  */
-export default (fps = FPS, maxFPS = MAX_FPS) => (AnimatedComponent, update) => {
-
-  const timestep = 1000 / fps;
+export default (timestep = TIMESTEP, maxFPS = MAX_FPS) => (AnimatedComponent, update) => {
 
   class Animator extends React.Component {
 
