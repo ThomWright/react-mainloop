@@ -1,3 +1,10 @@
+
+DISCLAIMER
+==========
+
+**This library isn't production-ready. It needs testing.**
+
+
 React-MainLoop
 ==============
 
