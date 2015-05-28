@@ -4,9 +4,9 @@
   "description": "A React Component that uses a game loop to animate another component.",
   "main": "dist/Animator.js",
   "scripts": {
-    "build": "rimraf dist && babel src --out-dir dist --optional es7.objectRestSpread --optional runtime",
+    "build": "rimraf dist && babel src --out-dir dist --optional es7.objectRestSpread --optional runtime --ignore \"__tests__\"",
     "lint": "eslint src/",
-    "jest": "jest",
+    "jest": "jest src",
     "test": "npm run lint && npm run jest",
     "prepublish": "npm test && npm run build && npm shrinkwrap",
     "postpublish": "rm npm-shrinkwrap.json"
