@@ -22,7 +22,7 @@ Yes, but it gives me greater control of when `render` gets called in the loop cy
 
 All examples use [ES6 syntax](https://github.com/lukehoban/es6features).
 
-```detailed-explanation-javascript-game-loops-and-timing
+```javascript
 import Animator from 'react-mainloop';
 
 const FPS = 30,
@@ -43,13 +43,17 @@ React.render(<MyAnimatedComponent />, document.getElementById('someID'));
 
 ## API
 
-`import Animator from 'react-mainloop';`
+```javascript
+import Animator from 'react-mainloop';
+```
 
 ### `Animator`
 
 Creates a function that wraps a React component with an animator for the given FPS settings.
 
-`const animate = new Animator(fps, maxFPS);`
+```javascript
+const animate = new Animator(fps, maxFPS);
+```
 
 **Params**
 - **timestep** `number` *optional* - Sets how many milliseconds should be simulated by every run of `update()`. *Default: `1000 / 60`* ([reference](https://icecreamyou.github.io/MainLoop.js/docs/#!/api/MainLoop-method-setSimulationTimestep))
@@ -62,7 +66,9 @@ Creates a function that wraps a React component with an animator for the given F
 
 Wraps a given React component in an `Animate` component, which controls the `props` for the given component.
 
-`const MyAnimatedComponent = animate(Component, update);`
+```javascript
+const MyAnimatedComponent = animate(Component, update);
+```
 
 **Params**
 - **Component** `ReactComponent` - The component to wrap and animate.
@@ -79,7 +85,7 @@ The `update()` function should simulate anything that is affected by time. It ca
 
 See [MainLoop.setUpdate()](https://icecreamyou.github.io/MainLoop.js/docs/#!/api/MainLoop-method-setUpdate).
 
-```
+```javascript
 function update(delta) {
   /* ... */
   return props;
@@ -97,7 +103,9 @@ Returned from `animate()`. A normal React component, but animated!
 
 All supplied props will be passed through to the wrapped component.
 
-```<AnimatedComponent thisProp="getsPassedThrough" />```
+```javascript
+<AnimatedComponent thisProp="getsPassedThrough" />
+```
 
 **props**
 - **run** `boolean` *optional* - Animate if `true`. *Default: `true`*
