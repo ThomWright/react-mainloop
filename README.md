@@ -18,10 +18,10 @@ Using [Isaac Sukin's](http://www.isaacsukin.com/) excellent [MainLoop.js library
 
 To read more about game loops, you can read [Isaac's excellent blog post](http://www.isaacsukin.com/news/2015/01/detailed-explanation-javascript-game-loops-and-timing) or the [Game Loop chapter](http://gameprogrammingpatterns.com/game-loop.html) of Robert Nystrom's book [Game Programming Patterns](http://gameprogrammingpatterns.com/).
 
-### Why isn't this a mixin?
+#### Why isn't this a mixin?
 I favour composition. See [this blog post](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750) which explains much better than I could why this is favourable.
 
-### What's with using `forceUpdate()`?
+#### What's with using `forceUpdate()`?
 **Isn't that against best practice?**
 Yes, but it gives me greater control of when `render` gets called in the loop cycle. Please raise an issue if you can think of a better way!
 
