@@ -32,10 +32,10 @@ All examples use [ES6 syntax](https://github.com/lukehoban/es6features).
 ```javascript
 import Animator from 'react-mainloop';
 
-const FPS = 30,
+const TIMESTEP = 1000 / 60,
       MAX_FPS = 60;
 
-const animate = new Animator(FPS, MAX_FPS);
+const animate = new Animator(TIMESTEP, MAX_FPS);
 
 const update = (delta) => {
   /* ... */
@@ -59,7 +59,7 @@ import Animator from 'react-mainloop';
 Creates a function that wraps a React component with an animator for the given FPS settings.
 
 ```javascript
-const animate = new Animator(fps, maxFPS);
+const animate = new Animator(timestep, maxFPS);
 ```
 
 **Params**
