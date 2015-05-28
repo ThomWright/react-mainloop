@@ -1,5 +1,5 @@
 import React from 'react';
-import MainLoop from 'mainloop.js';
+import MainLoop from 'mainloop.js/build/mainloop.min.js';
 
 const FPS = 60;
 const TIMESTEP = 1000 / FPS;
@@ -26,7 +26,7 @@ export default (timestep = TIMESTEP, maxFPS = MAX_FPS) => (AnimatedComponent, up
 
       const loop = MainLoop
         .setMaxAllowedFPS(maxFPS)
-        .setSimulationTimeStep(timestep)
+        .setSimulationTimestep(timestep)
         .setUpdate(this.update)
         .setDraw(this.forceUpdate)
         .setEnd(this.endOfFrame);
