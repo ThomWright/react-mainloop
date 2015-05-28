@@ -1,6 +1,6 @@
 {
   "name": "react-mainloop",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A React Component that uses a game loop to animate another component.",
   "main": "dist/Animator.js",
   "scripts": {
@@ -44,12 +44,20 @@
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
-    "testFileExtensions": ["es6", "js", "jsx"],
-    "moduleFileExtensions": ["js", "json", "es6", "jsx"],
+    "testFileExtensions": [
+      "es6",
+      "js",
+      "jsx"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "es6",
+      "jsx"
+    ],
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules/react",
       "<rootDir>/node_modules/react-tools"
     ]
-
   }
 }
