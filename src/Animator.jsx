@@ -66,7 +66,7 @@ export default (timestep = TIMESTEP, maxFPS = MAX_FPS) => (AnimatedComponent, up
       });
     }
 
-    endOfFrame(_/*fps*/, panic) {
+    endOfFrame(/*fps*/_, panic) {
       if (panic) {
         this.state.loop.resetFrameDelta();
       }
