@@ -2,9 +2,14 @@
   "name": "react-mainloop",
   "version": "0.0.0",
   "description": "A React Component that uses a game loop to animate another component.",
-  "main": "index.js",
+  "main": "dist/Animator.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rimraf dist && babel src --out-dir dist --optional es7.objectRestSpread --optional runtime",
+    "lint": "eslint src/",
+    "jest": "echo \"Error: no tests specified sadface\" && exit 1",
+    "test": "npm run lint && npm run jest",
+    "prepublish": "npm test && npm run build && npm shrinkwrap",
+    "postpublish": "rm npm-shrinkwrap.json"
   },
   "repository": {
     "type": "git",
@@ -24,5 +29,15 @@
   "bugs": {
     "url": "https://github.com/ThomWright/react-mainloop/issues"
   },
-  "homepage": "https://github.com/ThomWright/react-mainloop"
+  "homepage": "https://github.com/ThomWright/react-mainloop",
+  "dependencies": {
+    "mainloop.js": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel": "^5.4.7",
+    "babel-eslint": "^3.1.9",
+    "eslint": "^0.21.2",
+    "eslint-plugin-react": "^2.3.0",
+    "rimraf": "^2.3.4"
+  }
 }
