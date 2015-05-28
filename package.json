@@ -31,7 +31,8 @@
   },
   "homepage": "https://github.com/ThomWright/react-mainloop",
   "dependencies": {
-    "mainloop.js": "^1.0.0"
+    "mainloop.js": "^1.0.0",
+    "react": "^0.13.3"
   },
   "devDependencies": {
     "babel": "^5.4.7",
@@ -56,8 +57,7 @@
       "jsx"
     ],
     "unmockedModulePathPatterns": [
-      "<rootDir>/node_modules/react",
-      "<rootDir>/node_modules/react-tools"
+      "<rootDir>/node_modules/react"
     ]
   }
 }
