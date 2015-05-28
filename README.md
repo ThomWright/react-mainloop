@@ -8,6 +8,11 @@ DISCLAIMER
 React-MainLoop
 ==============
 
+[![Travis](https://img.shields.io/travis/ThomWright/react-mainloop.svg?style=flat-square)](https://travis-ci.org/ThomWright/react-mainloop)
+[![npm](https://img.shields.io/npm/v/react-mainloop.svg?style=flat-square)](https://www.npmjs.com/package/react-mainloop)
+[![David](https://img.shields.io/david/ThomWright/react-mainloop.svg?style=flat-square)](https://david-dm.org/ThomWright/react-mainloop)
+[![David](https://img.shields.io/david/dev/ThomWright/react-mainloop.svg?style=flat-square)](https://david-dm.org/ThomWright/react-mainloop#info=devDependencies)
+
 A React Component that runs a game loop.
 
 ## Why
