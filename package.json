@@ -6,8 +6,8 @@
   "scripts": {
     "build": "rimraf dist && babel src --out-dir dist --optional es7.objectRestSpread --optional runtime --ignore \"__tests__\"",
     "lint": "eslint src/",
-    "jest": "jest src",
-    "test": "npm run lint && npm run jest",
+    "mocha": "find ./src -wholename \"./*__tests__/*\" | xargs mocha -R spec --require test-setup",
+    "test": "npm run lint && npm run mocha",
     "prepublish": "npm test && npm run build && npm shrinkwrap",
     "postpublish": "rm npm-shrinkwrap.json"
   },
@@ -37,27 +37,12 @@
   "devDependencies": {
     "babel": "^5.4.7",
     "babel-eslint": "^3.1.9",
-    "babel-jest": "^5.2.0",
+    "babel-runtime": "^5.4.7",
+    "chai": "^2.3.0",
     "eslint": "^0.21.2",
     "eslint-plugin-react": "^2.3.0",
-    "jest-cli": "^0.4.5",
+    "jsdom": "^3.0",
+    "mocha": "^2.2.5",
     "rimraf": "^2.3.4"
-  },
-  "jest": {
-    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
-    "testFileExtensions": [
-      "es6",
-      "js",
-      "jsx"
-    ],
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "es6",
-      "jsx"
-    ],
-    "unmockedModulePathPatterns": [
-      "<rootDir>/node_modules/react"
-    ]
   }
 }
