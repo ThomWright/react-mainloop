@@ -2,12 +2,12 @@ language: node_js
 node_js:
 - '0.12'
 - '0.10'
-sudo: false   # use container-based architecture; starts up faster
+sudo: false # use container-based architecture; starts up faster
 deploy:
   provider: npm
   email: npm@thomwright.co.uk
   api_key:
-    secure: cqG3FoKup2j//TORmYjuK3bxUAjNalNawFUB4to4+5xFkzC5Ea3N6Jq56Lx9/+NM6lOR2Aw0ZBL+mbpq4lBNwL+xb5Sslxe9Slp3ruhx2ru/qRHF8+cEXJKynaLa6pl6tEbIrgOkH6zKeWbimkCBLspShfrvAQoJpos+VeynV4M=
+    secure: tnVaNC+H/wajeAyTko1Hwsx3V/KkQ1hfloG0ntUpgxqgfpi9GxKt1yAF7LYWnn2acOXlGr17tohsSi3k9ocX1V+gcBM27WJ7vNtKbChypQIdUGVoXVfvnQBoTWXEQyuEgQDCUrE/l50sKZN/0Wk6PamAimS14MY0ilqZkyPNIPYHuOvwYzcBCjSkOH23UG8Q/CLIaLDK4HHZte28/La7HLZrC/6ZIN+rEz7DGMnDnoXAaN19YbIs7TjHCOlO40xOWGmoQlagkdYPzj9tx/rHKu1JbxJlYQ2wGKqgXQ5I5PdwFR1ESm2fNf34MTgeH9bHqZzrGMG85v6JdYNfkL0VsQNMgs9+qO2GLk33fHPo6aIcHLflOPTmgvEKUeZ+r4PLPkLvrMcMEndoYO57vkc62UcFg1LalVIKgvWSrGB5N1DNdQ28THtiZRzC+W2E1CBwkh0AFJ7nUPmMo+DPbQCYx+DSbBlHZQKfFEt6xu1qX4apJ3gVb5NNGdUJjvRNQcE2ppH7QIRz5WoYOEWODWwLvtF/DxJdskXdOOk0wIvDnA9eS0MLbGNy8wRxy6pJRsI525CAFysBA4zpa1Xc1/B61m5BCHnPVDxELL+JgJ/YLFRJk8GWW/sERung2nZUuAGYZ14xM8p2yPR3Ob66rDNg64Sey7IzJMkqH3NaBAT8L1k=
   on:
     tags: true
     repo: ThomWright/react-mainloop
