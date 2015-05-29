@@ -28,7 +28,7 @@ export default (timestep = TIMESTEP, maxFPS = MAX_FPS) => (AnimatedComponent, up
         .setMaxAllowedFPS(maxFPS)
         .setSimulationTimestep(timestep)
         .setUpdate(this.update)
-        .setDraw(this.forceUpdate)
+        .setDraw((/* interpolationPercentage */) => this.forceUpdate())
         .setEnd(this.endOfFrame);
 
       this.state = {
