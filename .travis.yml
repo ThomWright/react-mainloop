@@ -2,6 +2,7 @@ language: node_js
 node_js:
 - '0.12'
 - '0.10'
+sudo: false   # use container-based architecture; starts up faster
 deploy:
   provider: npm
   email: npm@thomwright.co.uk
