@@ -1,6 +1,6 @@
 {
   "name": "react-mainloop",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A React Component that uses a game loop to animate another component.",
   "main": "dist/Animator.js",
   "scripts": {
