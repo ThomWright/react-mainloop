@@ -8,14 +8,18 @@ const MAX_FPS = 60;
 /**
  * A wrapper to animate a given component.
  * All props are passed down to the child component.
- * The update callback takes the elapsed time (in milliseconds) since the last update,
+ *
+ * The getUpdate callback takes a reference to the animated component's backing instance,
+ * and returns the update function.
+ *
+ * The update function takes the elapsed time (in milliseconds) since the last update,
  * and returns the props for the animated component.
  *
  * @param  {ReactComponent} AnimatedComponent
- * @param  {function} update
+ * @param  {function} getUpdate
  * @return {ReactComponent} An animated version of the given component.
  */
-export default (timestep = TIMESTEP, maxFPS = MAX_FPS) => (AnimatedComponent, update) => {
+export default (timestep = TIMESTEP, maxFPS = MAX_FPS) => (AnimatedComponent, getUpdate) => {
 
   class Animator extends React.Component {
 
@@ -24,22 +28,29 @@ export default (timestep = TIMESTEP, maxFPS = MAX_FPS) => (AnimatedComponent, up
       this.update = this.update.bind(this);
       this.endOfFrame = this.endOfFrame.bind(this);
 
-      const loop = MainLoop
-        .setMaxAllowedFPS(maxFPS)
-        .setSimulationTimestep(timestep)
-        .setUpdate(this.update)
-        .setDraw((/* interpolationPercentage */) => this.forceUpdate())
-        .setEnd(this.endOfFrame);
-
       this.state = {
-        loop,
         animatedProps: {}
       };
     }
 
     componentDidMount() {
+      const update = getUpdate(this.refs.animated);
+      const draw = (/* interpolationPercentage */) => this.forceUpdate();
+      const loop = MainLoop
+        .setMaxAllowedFPS(maxFPS)
+        .setSimulationTimestep(timestep)
+        .setUpdate(this.update)
+        .setDraw(draw)
+        .setEnd(this.endOfFrame);
+
+      this.setState({
+        loop,
+        update,
+        animatedProps: {}
+      });
+
       if (this.props.run) {
-        this.state.loop.start();
+        loop.start();
       }
     }
 
@@ -62,7 +73,7 @@ export default (timestep = TIMESTEP, maxFPS = MAX_FPS) => (AnimatedComponent, up
 
     update(delta) {
       this.setState({
-        animatedProps: update(delta)
+        animatedProps: this.state.update(delta)
       });
     }
 
@@ -74,7 +85,7 @@ export default (timestep = TIMESTEP, maxFPS = MAX_FPS) => (AnimatedComponent, up
 
     render() {
       return (
-        <AnimatedComponent
+        <AnimatedComponent ref='animated'
           {...this.props}
           {...this.state.animatedProps}
         />

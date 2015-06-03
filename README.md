@@ -42,12 +42,12 @@ const TIMESTEP = 1000 / 60,
 
 const animate = new Animator(TIMESTEP, MAX_FPS);
 
-const update = (delta) => {
+const getUpdate = (ref) => (delta) => {
   /* ... */
   return props;
 };
 
-const MyAnimatedComponent = animate(MyComponent, update);
+const MyAnimatedComponent = animate(MyComponent, getUpdate);
 
 React.render(<MyAnimatedComponent />, document.getElementById('someID'));
 
@@ -79,17 +79,39 @@ const animate = new Animator(timestep, maxFPS);
 Wraps a given React component in an `Animate` component, which controls the `props` for the given component.
 
 ```javascript
-const MyAnimatedComponent = animate(Component, update);
+const MyAnimatedComponent = animate(Component, getUpdate);
 ```
 
 **Params**
 - **Component** `ReactComponent` - The component to wrap and animate.
-- **update()** `function` - Takes the time since the last update and returns the next set of `props` for `Component`.
+- **getUpdate()** `function` - Takes a reference to the backing instance of the animated component and returns the `update()` function. It is called after the component is mounted.
 
 **Returns**
 - **AnimatedComponent** `ReactComponent` - A normal React component, but animated!
 
+### `getUpdate()`
+*User-supplied*
+
+Returns the `update()` function.
+
+```javascript
+const getUpdate = (ref) => (delta) => {
+  /* has access to the component instance being animated using ref */
+  return props;
+};
+```
+
+**Params**
+- **ref** `ReactComponent instance` - The running instance of the animated component.
+
+**Returns**
+- **update()** `function` - Takes the time since the last update and returns the next set of `props` for `Component`.
+
+**See**
+[React refs docs](https://facebook.github.io/react/docs/more-about-refs.html)
+
 ### `update()`
+*User-supplied*
 
 The function that runs updates (e.g. AI and physics).
 
