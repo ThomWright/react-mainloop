@@ -142,7 +142,7 @@ function update(delta) {
 - **delta** `number` - The amount of time in milliseconds to simulate in the update.
 
 **Returns**
-- **context** `object` - The next context properties to feed your component
+- **context** `object` - The next context properties to feed your component. This will be saved in `context.animContext`.
 - **props** `object` - The next set of props to feed your component.
 
 **See**

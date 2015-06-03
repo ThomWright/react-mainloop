@@ -83,6 +83,12 @@ export default (timestep = TIMESTEP, maxFPS = MAX_FPS) => (AnimatedComponent, ge
       this.state.loop.stop();
     }
 
+    getChildContext() {
+      return {
+         animContext: this.state.context
+      };
+    }
+
     render() {
       return (
         <AnimatedComponent ref='animated'
@@ -100,6 +106,10 @@ export default (timestep = TIMESTEP, maxFPS = MAX_FPS) => (AnimatedComponent, ge
 
   Animator.defaultProps = {
     run: true
+  };
+
+  Animator.childContextTypes = {
+    animContext: React.PropTypes.any
   };
 
   return Animator;
