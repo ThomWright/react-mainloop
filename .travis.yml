@@ -11,3 +11,7 @@ deploy:
   on:
     tags: true
     repo: ThomWright/react-mainloop
+notifications:
+  email:
+    on_success: never
+    on_failure: always
