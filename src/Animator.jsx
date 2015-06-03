@@ -13,7 +13,7 @@ const MAX_FPS = 60;
  * and returns the update function.
  *
  * The update function takes the elapsed time (in milliseconds) since the last update,
- * and returns the props for the animated component.
+ * and returns the props and context for the animated component.
  *
  * @param  {ReactComponent} AnimatedComponent
  * @param  {function} getUpdate
@@ -25,8 +25,6 @@ export default (timestep = TIMESTEP, maxFPS = MAX_FPS) => (AnimatedComponent, ge
 
     constructor(props) {
       super(props);
-      this.update = this.update.bind(this);
-      this.endOfFrame = this.endOfFrame.bind(this);
 
       this.state = {
         animatedProps: {}
@@ -34,18 +32,32 @@ export default (timestep = TIMESTEP, maxFPS = MAX_FPS) => (AnimatedComponent, ge
     }
 
     componentDidMount() {
-      const update = getUpdate(this.refs.animated);
-      const draw = (/* interpolationPercentage */) => this.forceUpdate();
-      const loop = MainLoop
-        .setMaxAllowedFPS(maxFPS)
-        .setSimulationTimestep(timestep)
-        .setUpdate(this.update)
-        .setDraw(draw)
-        .setEnd(this.endOfFrame);
+      const updateFunc = getUpdate(this.refs.animated),
+            update = (delta) => {
+              const {context, props} = updateFunc(delta);
+              this.setState({
+                context,
+                animatedProps: props
+              });
+            },
+
+            draw = (/* interpolationPercentage */) => this.forceUpdate(),
+
+            endOfFrame = (/*fps*/_, panic) => {
+              if (panic) {
+                loop.resetFrameDelta();
+              }
+            },
+
+            loop = MainLoop
+              .setMaxAllowedFPS(maxFPS)
+              .setSimulationTimestep(timestep)
+              .setUpdate(update)
+              .setDraw(draw)
+              .setEnd(endOfFrame);
 
       this.setState({
         loop,
-        update,
         animatedProps: {}
       });
 
@@ -71,23 +83,12 @@ export default (timestep = TIMESTEP, maxFPS = MAX_FPS) => (AnimatedComponent, ge
       this.state.loop.stop();
     }
 
-    update(delta) {
-      this.setState({
-        animatedProps: this.state.update(delta)
-      });
-    }
-
-    endOfFrame(/*fps*/_, panic) {
-      if (panic) {
-        this.state.loop.resetFrameDelta();
-      }
-    }
-
     render() {
       return (
         <AnimatedComponent ref='animated'
           {...this.props}
           {...this.state.animatedProps}
+          context={this.state.context}
         />
       );
     }

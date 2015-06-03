@@ -44,7 +44,10 @@ const animate = new Animator(TIMESTEP, MAX_FPS);
 
 const getUpdate = (ref) => (delta) => {
   /* ... */
-  return props;
+  return {
+    context,
+    props
+  };
 };
 
 const MyAnimatedComponent = animate(MyComponent, getUpdate);
@@ -76,7 +79,7 @@ const animate = new Animator(timestep, maxFPS);
 
 ### `animate()`
 
-Wraps a given React component in an `Animate` component, which controls the `props` for the given component.
+Wraps a given React component in an `Animate` component, which controls the `props` and `context` for the given component.
 
 ```javascript
 const MyAnimatedComponent = animate(Component, getUpdate);
@@ -97,7 +100,10 @@ Returns the `update()` function.
 ```javascript
 const getUpdate = (ref) => (delta) => {
   /* has access to the component instance being animated using ref */
-  return props;
+  return {
+    context,
+    props
+  };
 };
 ```
 
@@ -113,24 +119,34 @@ const getUpdate = (ref) => (delta) => {
 ### `update()`
 *User-supplied*
 
-The function that runs updates (e.g. AI and physics).
+Runs updates (e.g. AI and physics).
 
 The `update()` function should simulate anything that is affected by time. It can be called zero or more times per frame depending on the frame rate.
+
+Both `props` and `context` can be returned.
 
 See [MainLoop.setUpdate()](https://icecreamyou.github.io/MainLoop.js/docs/#!/api/MainLoop-method-setUpdate).
 
 ```javascript
 function update(delta) {
   /* ... */
-  return props;
+  return {
+    context,
+    props
+  }
 }
+
 ```
 
 **Params**
 - **delta** `number` - The amount of time in milliseconds to simulate in the update.
 
 **Returns**
+- **context** `object` - The next context properties to feed your component
 - **props** `object` - The next set of props to feed your component.
+
+**See**
+[Introductin to Contexts in React.js](https://www.tildedave.com/2014/11/15/introduction-to-contexts-in-react-js.html)
 
 ### `AnimatedComponent`
 Returned from `animate()`. A normal React component, but animated!
