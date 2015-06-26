@@ -19,6 +19,7 @@ const noop = () => {};
  *
  * @param  {ReactComponent} AnimatedComponent
  * @param  {function} updateF
+ * @param {function} beginF
  * @return {ReactComponent} An animated version of the given component.
  */
 export default (timestep = TIMESTEP, maxFPS = MAX_FPS) => (AnimatedComponent, updateF, beginF) => {
