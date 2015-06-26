@@ -42,7 +42,7 @@ const TIMESTEP = 1000 / 60,
 
 const animate = new Animator(TIMESTEP, MAX_FPS);
 
-const getUpdate = (ref) => (delta) => {
+const update = (delta) => {
   /* ... */
   return {
     context,
@@ -50,7 +50,7 @@ const getUpdate = (ref) => (delta) => {
   };
 };
 
-const MyAnimatedComponent = animate(MyComponent, getUpdate);
+const MyAnimatedComponent = animate(MyComponent, update);
 
 React.render(<MyAnimatedComponent />, document.getElementById('someID'));
 
@@ -82,39 +82,30 @@ const animate = new Animator(timestep, maxFPS);
 Wraps a given React component in an `Animate` component, which controls the `props` and `context` for the given component.
 
 ```javascript
-const MyAnimatedComponent = animate(Component, getUpdate);
+const MyAnimatedComponent = animate(Component, update);
 ```
 
 **Params**
 - **Component** `ReactComponent` - The component to wrap and animate.
-- **getUpdate()** `function` - Takes a reference to the backing instance of the animated component and returns the `update()` function. It is called after the component is mounted.
+- **update()** `function` - Called zero or more times per frame depending on the frame rate.
+- **begin()** `function` *optional* - Called once at the beginning of a frame.
 
 **Returns**
 - **AnimatedComponent** `ReactComponent` - A normal React component, but animated!
 
-### `getUpdate()`
+### `begin()`
 *User-supplied*
 
-Returns the `update()` function.
+Called once at the beginning of a frame. Useful for e.g. handling events since the previous frame.
+
+See [MainLoop.setUpdate()](https://icecreamyou.github.io/MainLoop.js/docs/#!/api/MainLoop-method-setBegin.
 
 ```javascript
-const getUpdate = (ref) => (delta) => {
-  /* has access to the component instance being animated using ref */
-  return {
-    context,
-    props
-  };
-};
+function begin() {
+  /* ... */
+}
+
 ```
-
-**Params**
-- **ref** `ReactComponent instance` - The running instance of the animated component.
-
-**Returns**
-- **update()** `function` - Takes the time since the last update and returns the next set of `props` for `Component`.
-
-**See**
-[React refs docs](https://facebook.github.io/react/docs/more-about-refs.html)
 
 ### `update()`
 *User-supplied*

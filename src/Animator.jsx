@@ -5,6 +5,8 @@ const FPS = 60;
 const TIMESTEP = 1000 / FPS;
 const MAX_FPS = 60;
 
+const noop = () => {};
+
 /**
  * A wrapper to animate a given component.
  * All props are passed down to the child component.
@@ -16,10 +18,10 @@ const MAX_FPS = 60;
  * and returns the props and context for the animated component.
  *
  * @param  {ReactComponent} AnimatedComponent
- * @param  {function} getUpdate
+ * @param  {function} updateF
  * @return {ReactComponent} An animated version of the given component.
  */
-export default (timestep = TIMESTEP, maxFPS = MAX_FPS) => (AnimatedComponent, getUpdate) => {
+export default (timestep = TIMESTEP, maxFPS = MAX_FPS) => (AnimatedComponent, updateF, beginF) => {
 
   class Animator extends React.Component {
 
@@ -32,9 +34,10 @@ export default (timestep = TIMESTEP, maxFPS = MAX_FPS) => (AnimatedComponent, ge
     }
 
     componentDidMount() {
-      const updateFunc = getUpdate(this.refs.animated),
+      const begin = beginF || noop,
+
             update = (delta) => {
-              const {context, props} = updateFunc(delta);
+              const {context, props} = updateF(delta);
               this.setState({
                 context,
                 animatedProps: props
@@ -44,6 +47,7 @@ export default (timestep = TIMESTEP, maxFPS = MAX_FPS) => (AnimatedComponent, ge
             draw = (/* interpolationPercentage */) => this.forceUpdate(),
 
             endOfFrame = (/*fps*/_, panic) => {
+              // TODO let user supply callback for this
               if (panic) {
                 loop.resetFrameDelta();
               }
@@ -52,6 +56,7 @@ export default (timestep = TIMESTEP, maxFPS = MAX_FPS) => (AnimatedComponent, ge
             loop = MainLoop
               .setMaxAllowedFPS(maxFPS)
               .setSimulationTimestep(timestep)
+              .setBegin(begin)
               .setUpdate(update)
               .setDraw(draw)
               .setEnd(endOfFrame);
