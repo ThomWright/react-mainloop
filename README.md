@@ -98,7 +98,7 @@ const MyAnimatedComponent = animate(Component, update);
 
 Called once at the beginning of a frame. Useful for e.g. handling events since the previous frame.
 
-See [MainLoop.setUpdate()](https://icecreamyou.github.io/MainLoop.js/docs/#!/api/MainLoop-method-setBegin.
+See [MainLoop.setBegin()](https://icecreamyou.github.io/MainLoop.js/docs/#!/api/MainLoop-method-setBegin).
 
 ```javascript
 function begin() {
