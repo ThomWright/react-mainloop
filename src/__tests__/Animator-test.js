@@ -1,8 +1,7 @@
 
-import React from 'react/addons';
+import React from 'react';
+import TestUtils from 'react/lib/ReactTestUtils';
 import Animator from '../Animator.jsx';
-
-const TestUtils = React.addons.TestUtils;
 
 const animate = new Animator();
 
