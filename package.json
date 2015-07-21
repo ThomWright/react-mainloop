@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rimraf dist && babel src --out-dir dist --optional es7.objectRestSpread --optional runtime --ignore \"__tests__\"",
     "lint": "eslint src/",
-    "mocha": "find ./src -wholename \"./*__tests__/*\" | xargs mocha -R spec --require test-setup",
+    "mocha": "mocha **/*__tests__/* -R spec --require test-setup",
     "test": "npm run lint && npm run mocha",
     "prepublish": "npm test && npm run build && npm shrinkwrap",
     "postpublish": "rm npm-shrinkwrap.json"
@@ -42,6 +42,7 @@
     "eslint-plugin-react": "^3",
     "jsdom": "^3.0",
     "mocha": "^2.2.5",
+    "react": "^0.13",
     "rimraf": "^2.3.4"
   },
   "peerDependencies": {
