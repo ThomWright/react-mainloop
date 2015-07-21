@@ -1,10 +1,4 @@
 
-/*global describe*/
-/*global it*/
-/*global after*/
-// global afterEach
-/*global expect*/
-
 import React from 'react/addons';
 import Animator from '../Animator.jsx';
 
