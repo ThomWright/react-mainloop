@@ -22,7 +22,8 @@
     "loop",
     "game",
     "gameloop",
-    "animate"
+    "animate",
+    "react-component"
   ],
   "author": "Thom Wright <npm@thomwright.co.uk> (http://thomwright.co.uk/)",
   "license": "MIT",
