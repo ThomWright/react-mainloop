@@ -44,6 +44,7 @@
     "jsdom": "^3.0",
     "mocha": "^2.2.5",
     "react": "^0.14.0-a",
+    "react-dom": "^0.14.0-beta3",
     "rimraf": "^2.3.4"
   },
   "peerDependencies": {

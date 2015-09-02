@@ -1,5 +1,6 @@
 
 import React from 'react';
+import reactdom from 'react-dom';
 import TestUtils from 'react/lib/ReactTestUtils';
 import Animator from '../Animator.jsx';
 
@@ -20,7 +21,7 @@ describe('Animator', function() {
     it('should successfully create a renderable component', function() {
       let component = null;
       after(function() {
-        React.unmountComponentAtNode(React.findDOMNode(component).parentNode);
+        reactdom.unmountComponentAtNode(reactdom.findDOMNode(component).parentNode);
       });
 
       expect(() => {
