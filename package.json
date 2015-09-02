@@ -43,10 +43,10 @@
     "eslint-plugin-react": "^3",
     "jsdom": "^3.0",
     "mocha": "^2.2.5",
-    "react": "^0.13",
+    "react": "^0.14.0-a",
     "rimraf": "^2.3.4"
   },
   "peerDependencies": {
-    "react": "^0.13"
+    "react": "^0.13.0 || ^0.14.0-a"
   }
 }
