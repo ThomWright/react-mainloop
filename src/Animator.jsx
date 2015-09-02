@@ -1,5 +1,5 @@
 import React from 'react';
-import MainLoop from 'mainloop.js/build/mainloop.min.js';
+import MainLoop from 'mainloop.js';
 
 const FPS = 60;
 const TIMESTEP = 1000 / FPS;
@@ -18,11 +18,11 @@ const noop = () => {};
  * and returns the props and context for the animated component.
  *
  * @param  {ReactComponent} AnimatedComponent
- * @param  {function} updateF
- * @param {function} beginF
+ * @param  {function} userUpdate
+ * @param {function} userBegin
  * @return {ReactComponent} An animated version of the given component.
  */
-export default (timestep = TIMESTEP, maxFPS = MAX_FPS) => (AnimatedComponent, updateF, beginF) => {
+export default (timestep = TIMESTEP, maxFPS = MAX_FPS) => (AnimatedComponent, userUpdate, userBegin) => {
 
   class Animator extends React.Component {
 
@@ -35,10 +35,10 @@ export default (timestep = TIMESTEP, maxFPS = MAX_FPS) => (AnimatedComponent, up
     }
 
     componentDidMount() {
-      const begin = beginF || noop,
+      const begin = userBegin || noop,
 
             update = (delta) => {
-              const {context, props} = updateF(delta);
+              const {context, props} = userUpdate(delta);
               this.setState({
                 context,
                 animatedProps: props

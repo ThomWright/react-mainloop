@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/ThomWright/react-mainloop",
   "dependencies": {
-    "mainloop.js": "^1.0.0"
+    "mainloop.js": "^1.0.1"
   },
   "devDependencies": {
     "babel": "^5.4.7",
