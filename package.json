@@ -6,10 +6,8 @@
   "scripts": {
     "build": "rimraf dist && babel src --out-dir dist --optional es7.objectRestSpread --optional runtime --ignore \"__tests__\"",
     "lint": "eslint src/",
-    "mocha": "mocha **/*__tests__/* -R spec --require test-setup",
-    "test": "npm run lint && npm run mocha",
-    "prepublish": "npm test && npm run build && npm shrinkwrap",
-    "postpublish": "rm npm-shrinkwrap.json"
+    "test": "npm run lint",
+    "prepublish": "npm test && npm run build"
   },
   "repository": {
     "type": "git",
@@ -36,18 +34,18 @@
   },
   "devDependencies": {
     "babel": "^5.4.7",
-    "babel-eslint": "^3.1.9",
+    "babel-eslint": "^6.1.0",
     "babel-runtime": "^5.4.7",
     "chai": "^3",
-    "eslint": "^0",
-    "eslint-plugin-react": "^3",
-    "jsdom": "^3.0",
+    "eslint": "^3",
+    "eslint-plugin-react": "^5.2.2",
+    "jsdom": "^9.4.0",
     "mocha": "^2.2.5",
-    "react": "^0.14.0-a",
-    "react-dom": "^0.14.0-beta3",
+    "react": "^15",
+    "react-dom": "^15",
     "rimraf": "^2.3.4"
   },
   "peerDependencies": {
-    "react": "^0.13.0 || ^0.14.0-a"
+    "react": "^0.13.0 || ^0.14.0 || ^15"
   }
 }
